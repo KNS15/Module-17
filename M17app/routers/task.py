@@ -34,7 +34,7 @@ async def create_task(db: Annotated[Session, Depends(get_db)], user_id: int, cre
                             detail='User was not found')
 
     db.execute(insert(Task).values(
-        tittle=create_task.title,
+        title=create_task.title,
         content=create_task.content,
         priority=create_task.priority,
         user_id=user_id,
@@ -52,7 +52,7 @@ async def update_task(db: Annotated[Session, Depends(get_db)], task_id: int, upd
             status_code=status.HTTP_404_NOT_FOUND,
             detail='Task was not found')
     db.execute(update(Task).where(Task.id == task_id).values(
-        tittle=update_task.tittle,
+        title=update_task.title,
         content=update_task.content,
         priority=update_task.priority,
         user_id=task_id
